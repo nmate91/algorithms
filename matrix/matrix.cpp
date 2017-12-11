@@ -28,9 +28,8 @@ bool Matrix::create_empty_matrix() {
   }
   return true;
 }
-
 bool Matrix::fill_neighbours() {
-   for(int i = 0; i < height; ++i) {
+  for(int i = 0; i < height; ++i) {
     for(int j = 0; j < width; ++j) {
       if(i != 0) {
         if(j != 0) {

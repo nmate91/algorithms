@@ -33,18 +33,12 @@ namespace Parentheses
 
         internal bool IsLeftParentheses(char c) 
         {
-            if ('(' == c) return true;
-            if ('[' == c) return true;
-            if ('{' == c) return true;
-            return false;
+            return '(' == c || '[' == c || '{' == c        
         }
 
         internal bool IsRightParentheses(char c)
         {
-            if (')' == c) return true;
-            if (']' == c) return true;
-            if ('}' == c) return true;
-            return false;
+            return ')' == c || ']' == c || '}' == c;
         }
-    }
+    } 
 }

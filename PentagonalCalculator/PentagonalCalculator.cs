@@ -10,29 +10,9 @@ namespace PentagonalNumber
             return number * (3 * number - 1) / 2;
         }
 
-        public ulong SumOfNumberAndPentagonalNumber(ulong number)
-        {
-            return number + CalcuatePentagonalNumberOf(number);
-        }
-
-        public ulong DiffOfPentagonalNumberAndNumber(ulong number)
-        {
-            return CalcuatePentagonalNumberOf(number) - number;
-        }
-
-        public bool IsUlong(double number)
-        {
-            return (1 + 24 * number) % 1 < double.Epsilon;
-        }
-
         public bool IsPentagonal(ulong number)
         {
             return (Math.Sqrt(1 + 24 * number) + 1) % 6 < double.Epsilon;
-        }
-
-        public ulong MaxPentagonalNumber()
-        {
-            return (ulong)(Math.Sqrt(ulong.MaxValue) + 1) / 6;
         }
 
         public ulong CalculateAbsOfDiff() 

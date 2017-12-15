@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
+
 namespace PentagonalNumber
 {
     public class PentagonalCalculator
     {
         public ulong CalcuatePentagonalNumberOf(ulong number) 
         {
-            return (number * (3 * number - 1)) / 2;
+            return number * (3 * number - 1) / 2;
         }
 
         public ulong SumOfNumberAndPentagonalNumber(ulong number)
@@ -18,9 +20,14 @@ namespace PentagonalNumber
             return CalcuatePentagonalNumberOf(number) - number;
         }
 
+        public bool IsUlong(double number)
+        {
+            return (1 + 24 * number) % 1 < double.Epsilon;
+        }
+
         public bool IsPentagonal(ulong number)
         {
-            return Math.Abs((Math.Sqrt(1 + 24 * number) + 1) % 6) < 0.000001;
+            return (Math.Sqrt(1 + 24 * number) + 1) % 6 < double.Epsilon;
         }
 
         public ulong MaxPentagonalNumber()
@@ -30,17 +37,25 @@ namespace PentagonalNumber
 
         public ulong CalculateAbsOfDiff() 
         {
-            ulong Dmin = ulong.MaxValue;
-            for (ulong i = MaxPentagonalNumber(); i > 0; --i)
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            for (ulong i = 1; i < ulong.MaxValue; ++i)
             {
-                if(IsPentagonal(i))
+                ulong n = CalcuatePentagonalNumberOf(i);
+
+                for (ulong j = i - 1; j > 0; j--)
                 {
-                    ulong tempDmin = SumOfNumberAndPentagonalNumber(i) - DiffOfPentagonalNumberAndNumber(i);
-                    if (tempDmin < Dmin)
-                        Dmin = tempDmin;
+                    ulong m = CalcuatePentagonalNumberOf(j);
+                    if (IsPentagonal(n - m) && IsPentagonal(n + m))
+                    {
+                        return n - m;
+                    }
                 }
             }
-            return Dmin;
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+            return 0;
         }
     }
 }

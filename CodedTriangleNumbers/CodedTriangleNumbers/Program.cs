@@ -9,7 +9,7 @@ namespace CodedTriangleNumbers
 {
     public class WordCounter
     {
-        private Dictionary<char, int> values = new Dictionary<char, int>
+        private readonly Dictionary<char, int> values = new Dictionary<char, int>
         {
             {'A', 1 },
             {'B', 2 },

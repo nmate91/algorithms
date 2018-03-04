@@ -36,16 +36,14 @@ namespace OverlappingRectangles
                 rc1 = rc2;
                 rc2 = tempRect;
             }
-            if (rc1.X2 > rc2.X1 && rc1.X1 < rc2.X2)
+            bool areRectanglesFading = rc1.X2 > rc2.X1 && rc1.X1 < rc2.X2 && rc1.Y2 > rc2.Y1 && rc1.Y1 < rc2.Y2;
+            if (areRectanglesFading)
             {
-                if(rc1.Y2 > rc2.Y1 && rc1.Y1 < rc2.Y2)
-                {
-                    int x1 = rc1.X1 > rc2.X1 ? rc1.X1 : rc2.X1;
-                    int y1 = rc1.Y1 > rc2.Y1 ? rc1.Y1 : rc2.Y1;
-                    int x2 = rc1.X2 < rc2.X2 ? rc1.X2 : rc2.X2;
-                    int y2 = rc1.Y2 < rc2.Y2 ? rc1.Y2 : rc2.Y2;
-                    return new RectangleCoordinates(x1, y1, x2, y2);
-                }
+                int x1 = rc1.X1 > rc2.X1 ? rc1.X1 : rc2.X1;
+                int y1 = rc1.Y1 > rc2.Y1 ? rc1.Y1 : rc2.Y1;
+                int x2 = rc1.X2 < rc2.X2 ? rc1.X2 : rc2.X2;
+                int y2 = rc1.Y2 < rc2.Y2 ? rc1.Y2 : rc2.Y2;
+                return new RectangleCoordinates(x1, y1, x2, y2);
             }
             return new RectangleCoordinates(0, 0, 0, 0);
         }
